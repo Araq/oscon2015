@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Effect system</title>
+  <meta name="copyright"
+   content="Copyright &#169; 2015 Andreas Rumpf" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="Slidy2/styles/slidy.css" />
+   <script src="Slidy2/scripts/slidy.js"
+   charset="utf-8" type="text/javascript"></script>
+  <style type="text/css">
+
+span.DecNumber {color: blue}
+span.BinNumber {color: blue}
+span.HexNumber {color: blue}
+span.OctNumber {color: blue}
+span.FloatNumber {color: blue}
+span.Identifier  {color: black}
+span.Keyword {font-weight: bold}
+span.StringLit {color: blue}
+span.LongStringLit {color: blue}
+span.CharLit {color: blue}
+span.EscapeSequence {color: black}
+span.Operator {color: black}
+span.Punctation {color: black}
+span.Comment, span.LongComment {font-style:italic; color: green}
+span.RegularExpression  {color: DarkViolet}
+span.TagStart {color: DarkViolet}
+span.TagEnd {color: DarkViolet}
+span.Key  {color: blue}
+span.Value  {color: black}
+span.RawData {color: blue}
+span.Assembler  {color: blue}
+span.Preprocessor {color: DarkViolet}
+span.Directive  {color: DarkViolet}
+span.Command, span.Rule, span.Hyperlink, span.Label, span.Reference,
+span.Other  {color: black}
+
+div.navigation {
+  -moz-border-radius: 5px 5px 5px 5px;
+  float: left;
+  width: 30%;
+  margin: 0; padding: 0;
+  border: 3px outset #7F7F7F;
+  background-color: #7F7F7F;
+}
+
+div.navigation ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+div.navigation ul li a, div.navigation ul li a:visited {
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+div.navigation ul li a:hover {
+  font-weight: bold;
+  text-decoration: none;
+  color: gold;
+}
+
+div.content {
+  margin-left: 30%;
+  padding: 0 1em;
+  border-left: 4em;
+}
+
+dl.item dd, dl.item dd p {
+  margin-top:3px;
+}
+dl.item dd pre {
+  margin-left: 15pt;
+  border: 0px;
+}
+dl.item dt, dl.item dt pre {
+  margin:  20pt 0 0 5pt;
+}
+
+pre, span.tok {
+  background-color: #F9F9F9;
+  border-color: #C4C4C4;
+  border-style: solid;
+  border-width: 1px 1px 1px 2px;
+  color: black;
+  line-spacing: 110%;
+  font-weight: normal;
+  padding: 2px;
+}
+
+span.red {
+  color: #A80000;
+}
+
+hr {background-color:#9D9D9D; border:0 none; color:#9D9D9D; height:1px; width:100%;}
+
+/*
+:Author: David Goodger
+:Contact: goodger@python.org
+:Date: Date: 2006-05-21 22:44:42 +0200 (Sun, 21 May 2006)
+:Revision: Revision: 4564
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th { border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first { margin-top: 0 ! important }
+.last, .with-subtitle { margin-bottom: 0 ! important }
+.hidden { display: none }
+a.toc-backref { text-decoration: none ; color: black }
+blockquote.epigraph { margin: 2em 5em ; }
+dl.docutils dd { margin-bottom: 0.5em }
+div.abstract { margin: 2em 5em }
+div.abstract p.topic-title { font-weight: bold ; text-align: center }
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ; border: medium outset ; padding: 1em }
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title { font-weight: bold ; font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title { color: red ; font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication { margin: 2em 5em ; text-align: center ; font-style: italic }
+div.dedication p.topic-title { font-weight: bold ; font-style: normal }
+div.figure { margin-left: 2em ; margin-right: 2em }
+div.footer, div.header { clear: both; font-size: smaller }
+div.line-block { display: block ; margin-top: 1em ; margin-bottom: 1em }
+div.line-block div.line-block { margin-top: 0 ; margin-bottom: 0 ;
+  margin-left: 1.5em }
+div.sidebar { margin-left: 1em ; border: medium outset ;
+  padding: 1em ; background-color: #ffffee ; /*width: 40% ;*/ float: right ;
+  clear: right }
+
+div.sidebar p.rubric { font-family: sans-serif ; font-size: medium }
+div.system-messages { margin: 5em }
+div.system-messages h1 { color: red }
+div.system-message { border: medium outset ; padding: 1em }
+div.system-message p.system-message-title { color: red ; font-weight: bold }
+div.topic { margin: 2em;}
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+h1.title { text-align: center }
+h2.subtitle { text-align: center }
+/* hr.docutils { width: 75% } */
+img.align-left { clear: left }
+img.align-right { clear: right }
+ol.simple, ul.simple { margin-bottom: 1em }
+ol.arabic { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+p.attribution { text-align: right ; margin-left: 50% }
+p.caption { font-style: italic }
+p.credits { font-style: italic ; font-size: smaller }
+p.label { white-space: nowrap }
+p.rubric { font-weight:bold;font-size:larger;color:maroon;text-align:center}
+p.sidebar-title {font-family: sans-serif ;font-weight: bold ;font-size: larger }
+p.sidebar-subtitle {font-family: sans-serif ; font-weight: bold }
+p.topic-title {
+font-weight: bold;
+background-color: #6D6D6D;
+border-bottom: 1px solid #000000;
+border-top: 1px solid black;
+color: white;
+text-align: center;
+margin: 0;
+}
+pre.address { margin-bottom: 0;margin-top:0;font-family:serif;font-size:100% }
+pre.literal-block, pre.doctest-block {margin-left: 2em ;margin-right: 2em }
+span.classifier {font-family: sans-serif;font-style: oblique }
+span.classifier-delimiter {font-family: sans-serif;font-weight: bold }
+span.interpreted {font-family: sans-serif }
+span.option {white-space: nowrap }
+span.pre {white-space: pre }
+span.problematic {color: red }
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation { border-left: solid 1px gray; margin-left: 1px }
+table.docinfo {margin: 2em 4em }
+table.docutils {margin-top: 0.5em;margin-bottom: 0.5em; border: 0 solid #9d9d9d; border-collapse: collapse; }
+table.footnote {border-left: solid 1px black;margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {padding-left: 0.5em;padding-right: 0.5em;
+  vertical-align: top;}
+
+table.docutils td, table.docutils th { border-bottom:1px solid #9D9D9D; }
+/* color: #4d4d4d} */
+
+/* table.docutils td:hover, table.docinfo td:hover {color: #000000} */
+
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold;text-align: left;white-space: nowrap;padding-left: 0 }
+
+table.docutils th
+{
+color: black;
+font-weight:normal;
+background-color: #E3E3E3;
+border-top: 1px solid #1d1d1d;
+border-bottom: 1px solid #1d1d1d;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {font-size: 100% }
+ul.auto-toc { list-style-type: none }
+/*a.reference { color: #E00000; font-weight:bold;}
+a.reference:hover {color: #E00000;background-color: #ffff00;display: margin;
+  font-weight:bold;}*/
+
+p.pic {
+    width: 1040px;
+    margin: 0 auto;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" media="screen, projection, print"
+ href="Slidy2/styles/w3c-blue.css" />
+
+</head>
+<body>
+  <div class="background">
+    <img id="head-icon" alt="Nimrod logo"
+      src="logo2.png" />
+  </div>
+
+<div class="slide">
+<h1 class="title">Effect system</h1>
+
+</div>
+<div class="slide">
+<h1 id="nosideeffect">NoSideEffect</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td><pre id="listing_1" class="listing"><span class="Identifier">cov</span><span class="Punctuation">:</span>
+  <span class="Keyword">proc</span> <span class="Identifier">toTest</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">,</span> <span class="Identifier">y</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">noSideEffect</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+    <span class="Keyword">case</span> <span class="Identifier">x</span>
+    <span class="Keyword">of</span> <span class="DecNumber">8</span><span class="Punctuation">:</span>
+      <span class="Keyword">if</span> <span class="Identifier">y</span> <span class="Operator">&gt;</span> <span class="DecNumber">9</span><span class="Punctuation">:</span> <span class="DecNumber">8</span><span class="Operator">+</span><span class="DecNumber">1</span>
+      <span class="Keyword">else</span><span class="Punctuation">:</span> <span class="DecNumber">8</span><span class="Operator">+</span><span class="DecNumber">2</span>
+    <span class="Keyword">of</span> <span class="DecNumber">9</span><span class="Punctuation">:</span> <span class="DecNumber">9</span>
+    <span class="Keyword">else</span><span class="Punctuation">:</span> <span class="DecNumber">100</span>
+
+<span class="Comment"># Error: 'toTest' can have side-effects</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_1')">Select</button>
+</div>
+<div class="slide">
+<h1 id="nosideeffect">NoSideEffect</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td><pre id="listing_2" class="listing"><span class="Keyword">var</span>
+  <span class="Identifier">track</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="Punctuation">(</span><span class="StringLit">&quot;line 9&quot;</span><span class="Punctuation">,</span> <span class="Identifier">false</span><span class="Punctuation">)</span><span class="Punctuation">,</span> <span class="Punctuation">(</span><span class="StringLit">&quot;line 13&quot;</span><span class="Punctuation">,</span> <span class="Identifier">false</span><span class="Punctuation">)</span><span class="Punctuation">,</span> <span class="Operator">...</span><span class="Punctuation">]</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">toTest</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">,</span> <span class="Identifier">y</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">noSideEffect</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+  <span class="Keyword">case</span> <span class="Identifier">x</span>
+  <span class="Keyword">of</span> <span class="DecNumber">8</span><span class="Punctuation">:</span>
+    <span class="Keyword">if</span> <span class="Identifier">y</span> <span class="Operator">&gt;</span> <span class="DecNumber">9</span><span class="Punctuation">:</span>
+      <span class="Identifier">track</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span><span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">]</span> <span class="Operator">=</span> <span class="Identifier">true</span>
+  <span class="Operator">...</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_2')">Select</button>
+</div>
+<div class="slide">
+<h1 id="nosideeffect">NoSideEffect</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td><pre id="listing_3" class="listing"><span class="Keyword">var</span>
+  <span class="Identifier">track</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="Punctuation">(</span><span class="StringLit">&quot;line 9&quot;</span><span class="Punctuation">,</span> <span class="Identifier">false</span><span class="Punctuation">)</span><span class="Punctuation">,</span> <span class="Punctuation">(</span><span class="StringLit">&quot;line 13&quot;</span><span class="Punctuation">,</span> <span class="Identifier">false</span><span class="Punctuation">)</span><span class="Punctuation">,</span> <span class="Operator">...</span><span class="Punctuation">]</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">setter</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Identifier">track</span><span class="Punctuation">[</span><span class="Identifier">x</span><span class="Punctuation">]</span><span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">]</span> <span class="Operator">=</span> <span class="Identifier">true</span>
+
+<span class="Keyword">type</span> <span class="Identifier">HideEffects</span> <span class="Operator">=</span> <span class="Keyword">proc</span> <span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">noSideEffect</span><span class="Punctuation">,</span> <span class="Identifier">raises</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Punctuation">]</span><span class="Punctuation">,</span> <span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">toTest</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">,</span> <span class="Identifier">y</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Operator">=</span>
+  <span class="Keyword">case</span> <span class="Identifier">x</span>
+  <span class="Keyword">of</span> <span class="DecNumber">8</span><span class="Punctuation">:</span>
+    <span class="Keyword">if</span> <span class="Identifier">y</span> <span class="Operator">&gt;</span> <span class="DecNumber">9</span><span class="Punctuation">:</span>
+      <span class="Keyword">cast</span><span class="Punctuation">[</span><span class="Identifier">HideEffects</span><span class="Punctuation">]</span><span class="Punctuation">(</span><span class="Identifier">setter</span><span class="Punctuation">)</span><span class="Punctuation">(</span><span class="DecNumber">0</span><span class="Punctuation">)</span>
+  <span class="Operator">...</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_3')">Select</button>
+</div>
+<div class="slide">
+<h1 id="effect-system">Effect System</h1><ul class="simple"><li>tracks side effects</li>
+<li>tracks exceptions</li>
+<li>tracks &quot;tags&quot;: ReadIOEffect, WriteIoEffect, TimeEffect, ReadDirEffect, <strong>ExecIOEffect</strong></li>
+<li>tracks locking levels; deadlock prevention at compile-time</li>
+</ul>
+
+</div>
+<div class="slide">
+<h1 id="exceptions">Exceptions</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td><pre id="listing_4" class="listing"><span class="Keyword">import</span> <span class="Identifier">strutils</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">readFromFile</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">raises</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+  <span class="Comment"># read the first two lines of a text file that should contain numbers</span>
+  <span class="Comment"># and tries to add them</span>
+  <span class="Keyword">var</span>
+    <span class="Identifier">f</span><span class="Punctuation">:</span> <span class="Identifier">File</span>
+  <span class="Keyword">if</span> <span class="Identifier">open</span><span class="Punctuation">(</span><span class="Identifier">f</span><span class="Punctuation">,</span> <span class="StringLit">&quot;numbers.txt&quot;</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
+    <span class="Keyword">try</span><span class="Punctuation">:</span>
+      <span class="Keyword">var</span> <span class="Identifier">a</span> <span class="Operator">=</span> <span class="Identifier">readLine</span><span class="Punctuation">(</span><span class="Identifier">f</span><span class="Punctuation">)</span>
+      <span class="Keyword">var</span> <span class="Identifier">b</span> <span class="Operator">=</span> <span class="Identifier">readLine</span><span class="Punctuation">(</span><span class="Identifier">f</span><span class="Punctuation">)</span>
+      <span class="Identifier">echo</span><span class="Punctuation">(</span><span class="StringLit">&quot;sum: &quot;</span> <span class="Operator">&amp;</span> <span class="Operator">$</span><span class="Punctuation">(</span><span class="Identifier">parseInt</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span> <span class="Operator">+</span> <span class="Identifier">parseInt</span><span class="Punctuation">(</span><span class="Identifier">b</span><span class="Punctuation">)</span><span class="Punctuation">)</span><span class="Punctuation">)</span>
+    <span class="Keyword">except</span> <span class="Identifier">OverflowError</span><span class="Punctuation">:</span>
+      <span class="Identifier">echo</span><span class="Punctuation">(</span><span class="StringLit">&quot;overflow!&quot;</span><span class="Punctuation">)</span>
+    <span class="Keyword">except</span> <span class="Identifier">ValueError</span><span class="Punctuation">:</span>
+      <span class="Identifier">echo</span><span class="Punctuation">(</span><span class="StringLit">&quot;could not convert string to integer&quot;</span><span class="Punctuation">)</span>
+    <span class="Keyword">except</span> <span class="Identifier">IOError</span><span class="Punctuation">:</span>
+      <span class="Identifier">echo</span><span class="Punctuation">(</span><span class="StringLit">&quot;IO error!&quot;</span><span class="Punctuation">)</span>
+    <span class="Keyword">except</span><span class="Punctuation">:</span>
+      <span class="Identifier">echo</span><span class="Punctuation">(</span><span class="StringLit">&quot;Unknown exception!&quot;</span><span class="Punctuation">)</span>
+    <span class="Keyword">finally</span><span class="Punctuation">:</span>
+      <span class="Identifier">close</span><span class="Punctuation">(</span><span class="Identifier">f</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_4')">Select</button>
+</div>
+<div class="slide">
+<h1 id="tags">Tags</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td><pre id="listing_5" class="listing"><span class="Keyword">type</span>
+  <span class="Identifier">TagA</span> <span class="Operator">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootEffect</span>
+  <span class="Identifier">TagB</span> <span class="Operator">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootEffect</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">a</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">TagA</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span> <span class="Keyword">discard</span>
+<span class="Keyword">proc</span> <span class="Identifier">b</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">TagB</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span> <span class="Keyword">discard</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">x</span><span class="Punctuation">(</span><span class="Identifier">input</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span> <span class="Operator">?</span> <span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+  <span class="Keyword">if</span> <span class="Identifier">input</span> <span class="Operator">&lt;</span> <span class="DecNumber">0</span><span class="Punctuation">:</span> <span class="Identifier">a</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+  <span class="Keyword">else</span><span class="Punctuation">:</span> <span class="Identifier">b</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_5')">Select</button>
+</div>
+<div class="slide">
+<h1 id="tags">Tags</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td><pre id="listing_6" class="listing"><span class="Keyword">type</span>
+  <span class="Identifier">TagA</span> <span class="Operator">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootEffect</span>
+  <span class="Identifier">TagB</span> <span class="Operator">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootEffect</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">a</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">TagA</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span> <span class="Keyword">discard</span>
+<span class="Keyword">proc</span> <span class="Identifier">b</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">TagB</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span> <span class="Keyword">discard</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">x</span><span class="Punctuation">(</span><span class="Identifier">input</span><span class="Punctuation">:</span> <span class="Identifier">int</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">TagA</span><span class="Punctuation">,</span> <span class="Identifier">TagB</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+  <span class="Keyword">if</span> <span class="Identifier">input</span> <span class="Operator">&lt;</span> <span class="DecNumber">0</span><span class="Punctuation">:</span> <span class="Identifier">a</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+  <span class="Keyword">else</span><span class="Punctuation">:</span> <span class="Identifier">b</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_6')">Select</button>
+</div>
+<div class="slide">
+<h1 id="tags">Tags</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td><pre id="listing_7" class="listing"><span class="Keyword">proc</span> <span class="Identifier">execProcesses</span><span class="Punctuation">(</span><span class="Identifier">commands</span><span class="Punctuation">:</span> <span class="Identifier">openArray</span><span class="Punctuation">[</span><span class="Identifier">string</span><span class="Punctuation">]</span><span class="Punctuation">,</span>
+                   <span class="Identifier">beforeRunEvent</span><span class="Punctuation">:</span> <span class="Keyword">proc</span> <span class="Punctuation">(</span><span class="Identifier">command</span><span class="Punctuation">:</span> <span class="Identifier">string</span><span class="Punctuation">)</span> <span class="Operator">=</span> <span class="Keyword">nil</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">int</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">ExecIOEffect</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span>
+  <span class="Comment">## executes the commands in parallel. The highest return value of</span>
+  <span class="Comment">## all processes is returned. Runs `beforeRunEvent` before running each</span>
+  <span class="Comment">## command.</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">echoCommand</span><span class="Punctuation">(</span><span class="Identifier">command</span><span class="Punctuation">:</span> <span class="Identifier">string</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">tags</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">WriteIOEffect</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+  <span class="Identifier">echo</span> <span class="Identifier">command</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">compose</span><span class="Operator">*</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Identifier">execProcesses</span><span class="Punctuation">(</span><span class="Punctuation">[</span><span class="StringLit">&quot;gcc -o foo foo.c&quot;</span><span class="Punctuation">,</span>
+                 <span class="StringLit">&quot;gcc -o bar bar.c&quot;</span><span class="Punctuation">,</span>
+                 <span class="StringLit">&quot;gcc -o baz baz.c&quot;</span><span class="Punctuation">]</span><span class="Punctuation">,</span>
+                 <span class="Identifier">echoCommand</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_7')">Select</button>
+</div>
+<div class="slide">
+<h1 id="gc-safety">GC safety</h1><ul class="simple"><li>a <tt class="docutils literal"><span class="pre">spawn</span></tt>'ed proc must be <tt class="docutils literal"><span class="pre">gcsafe</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">gcsafe</span></tt>: Does not access global variables containing GC'ed memory</li>
+<li><tt class="docutils literal"><span class="pre">noSideEffect</span></tt>: Does not access global variables</li>
+<li><tt class="docutils literal"><span class="pre">noSideEffect</span></tt> implies <tt class="docutils literal"><span class="pre">gcsafe</span></tt></li>
+</ul>
+
+</div>
+<div class="slide">
+<h1 id="gc-safety">GC safety</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td><pre id="listing_8" class="listing"><span class="Keyword">import</span> <span class="Identifier">tables</span><span class="Punctuation">,</span> <span class="Identifier">strutils</span><span class="Punctuation">,</span> <span class="Identifier">threadpool</span>
+
+<span class="Keyword">const</span>
+  <span class="Identifier">files</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="StringLit">&quot;data1.txt&quot;</span><span class="Punctuation">,</span> <span class="StringLit">&quot;data2.txt&quot;</span><span class="Punctuation">,</span> <span class="StringLit">&quot;data3.txt&quot;</span><span class="Punctuation">,</span> <span class="StringLit">&quot;data4.txt&quot;</span><span class="Punctuation">]</span>
+
+<span class="Keyword">var</span> <span class="Identifier">tab</span> <span class="Operator">=</span> <span class="Identifier">newCountTable</span><span class="Punctuation">[</span><span class="Identifier">string</span><span class="Punctuation">]</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">countWords</span><span class="Punctuation">(</span><span class="Identifier">filename</span><span class="Punctuation">:</span> <span class="Identifier">string</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Comment">## Counts all the words in the file.</span>
+  <span class="Keyword">for</span> <span class="Identifier">word</span> <span class="Keyword">in</span> <span class="Identifier">readFile</span><span class="Punctuation">(</span><span class="Identifier">filename</span><span class="Punctuation">)</span><span class="Operator">.</span><span class="Identifier">split</span><span class="Punctuation">:</span>
+    <span class="Identifier">tab</span><span class="Operator">.</span><span class="Identifier">inc</span> <span class="Identifier">word</span>
+
+<span class="Keyword">for</span> <span class="Identifier">f</span> <span class="Keyword">in</span> <span class="Identifier">files</span><span class="Punctuation">:</span>
+  <span class="Identifier">spawn</span> <span class="Identifier">countWords</span><span class="Punctuation">(</span><span class="Identifier">f</span><span class="Punctuation">)</span>
+<span class="Identifier">sync</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+<span class="Identifier">tab</span><span class="Operator">.</span><span class="Identifier">sort</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+<span class="Identifier">echo</span> <span class="Identifier">tab</span><span class="Operator">.</span><span class="Identifier">largest</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_8')">Select</button>
+</div>
+<div class="slide">
+<h1 id="gc-safety">GC safety</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td><pre id="listing_9" class="listing"><span class="Keyword">import</span> <span class="Identifier">threadpool</span><span class="Punctuation">,</span> <span class="Identifier">tables</span><span class="Punctuation">,</span> <span class="Identifier">strutils</span>
+
+<span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">pragma</span> <span class="Identifier">isolated</span><span class="Punctuation">,</span> <span class="Identifier">threadvar</span><span class="Operator">.</span><span class="Punctuation">}</span>
+
+<span class="Keyword">var</span> <span class="Identifier">tab</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">isolated</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span> <span class="Identifier">CountTable</span><span class="Punctuation">[</span><span class="Identifier">string</span><span class="Punctuation">]</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">rawPut</span><span class="Punctuation">(</span><span class="Identifier">key</span><span class="Punctuation">:</span> <span class="Identifier">string</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Identifier">inc</span><span class="Punctuation">(</span><span class="Identifier">tab</span><span class="Punctuation">,</span> <span class="Identifier">key</span><span class="Punctuation">)</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">put</span><span class="Punctuation">(</span><span class="Identifier">key</span><span class="Punctuation">:</span> <span class="Identifier">string</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Identifier">pinnedSpawn</span> <span class="DecNumber">0</span><span class="Punctuation">,</span> <span class="Identifier">rawPut</span><span class="Punctuation">(</span><span class="Identifier">key</span><span class="Punctuation">)</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">rawGet</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">string</span> <span class="Operator">=</span>
+  <span class="Identifier">tab</span><span class="Operator">.</span><span class="Identifier">sort</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+  <span class="Identifier">result</span> <span class="Operator">=</span> <span class="Identifier">tab</span><span class="Operator">.</span><span class="Identifier">largest</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">getMax</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">string</span> <span class="Operator">=</span>
+  <span class="Keyword">let</span> <span class="Identifier">flow</span> <span class="Operator">=</span> <span class="Identifier">pinnedSpawn</span><span class="Punctuation">(</span><span class="DecNumber">0</span><span class="Punctuation">,</span> <span class="Identifier">rawGet</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">)</span>
+  <span class="Identifier">result</span> <span class="Operator">=</span> <span class="Operator">^</span><span class="Identifier">flow</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">main</span> <span class="Operator">=</span>
+  <span class="Identifier">pinnedSpawn</span> <span class="DecNumber">0</span><span class="Punctuation">,</span> <span class="Punctuation">(</span><span class="Keyword">proc</span> <span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">=</span> <span class="Identifier">tab</span> <span class="Operator">=</span> <span class="Identifier">initCountTable</span><span class="Punctuation">[</span><span class="Identifier">string</span><span class="Punctuation">]</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">)</span>
+  <span class="Keyword">for</span> <span class="Identifier">x</span> <span class="Keyword">in</span> <span class="Identifier">split</span><span class="Punctuation">(</span><span class="Identifier">readFile</span><span class="Punctuation">(</span><span class="StringLit">&quot;readme.txt&quot;</span><span class="Punctuation">)</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
+    <span class="Identifier">put</span> <span class="Identifier">x</span>
+  <span class="Identifier">echo</span> <span class="Identifier">getMax</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+
+<span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_9')">Select</button>
+</div>
+<div class="slide">
+<h1 id="guards-and-locks">Guards and locks</h1><ul class="simple"><li>common low level concurrency mechanisms like locks, atomic instructions or condition variables are available</li>
+<li>guards fight data races</li>
+<li>locking levels fight deadlocks</li>
+</ul>
+
+</div>
+<div class="slide">
+<h1 id="data-race">Data race</h1><p>A data race occurs when:</p>
+<ul class="simple"><li>two or more threads access the same memory location concurrently</li>
+<li>at least one of the accesses is for writing</li>
+<li>the threads are not using any exclusive locks to control their accesses</li>
+</ul>
+
+</div>
+<div class="slide">
+<h1 id="guards-fight-data-races">Guards fight data races</h1><ul class="simple"><li>Object fields and global variables can be annotated via a <tt class="docutils literal"><span class="pre">guard</span></tt> pragma</li>
+<li>Access then has to be within a <tt class="docutils literal"><span class="pre">locks</span></tt> section:</li>
+</ul>
+<table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td><pre id="listing_10" class="listing"><span class="Keyword">var</span> <span class="Identifier">glock</span><span class="Punctuation">:</span> <span class="Identifier">Lock</span>
+<span class="Keyword">var</span> <span class="Identifier">gdata</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">guard</span><span class="Punctuation">:</span> <span class="Identifier">glock</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span> <span class="Identifier">int</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">invalid</span> <span class="Operator">=</span>
+  <span class="Comment"># invalid: unguarded access:</span>
+  <span class="Identifier">echo</span> <span class="Identifier">gdata</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">valid</span> <span class="Operator">=</span>
+  <span class="Comment"># valid access:</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">glock</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Identifier">echo</span> <span class="Identifier">gdata</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_10')">Select</button>
+</div>
+<div class="slide">
+<h1 id="guards-fight-data-races">Guards fight data races</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+</pre></td><td><pre id="listing_11" class="listing"><span class="Keyword">template</span> <span class="Identifier">lock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">:</span> <span class="Identifier">Lock</span><span class="Punctuation">;</span> <span class="Identifier">body</span><span class="Punctuation">:</span> <span class="Identifier">untyped</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Identifier">pthread_mutex_lock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Keyword">try</span><span class="Punctuation">:</span>
+      <span class="Identifier">body</span>
+    <span class="Keyword">finally</span><span class="Punctuation">:</span>
+      <span class="Identifier">pthread_mutex_unlock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_11')">Select</button>
+</div>
+<div class="slide">
+<h1 id="guards-fight-data-races">Guards fight data races</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td><pre id="listing_12" class="listing"><span class="Keyword">var</span> <span class="Identifier">dummyLock</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">compileTime</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span> <span class="Identifier">int</span>
+<span class="Keyword">var</span> <span class="Identifier">atomicCounter</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">guard</span><span class="Punctuation">:</span> <span class="Identifier">dummyLock</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span> <span class="Identifier">int</span>
+
+<span class="Keyword">template</span> <span class="Identifier">atomicRead</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">expr</span> <span class="Operator">=</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">dummyLock</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Identifier">memoryReadBarrier</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+    <span class="Identifier">x</span>
+
+<span class="Identifier">echo</span> <span class="Identifier">atomicRead</span><span class="Punctuation">(</span><span class="Identifier">atomicCounter</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_12')">Select</button>
+</div>
+<div class="slide">
+<h1 id="deadlocks">Deadlocks</h1><p>A deadlock occurs when:</p>
+<ul class="simple"><li>thread A acquires lock L1</li>
+<li>thread B acquires lock L2</li>
+<li>thread A tries to acquire lock L2</li>
+<li>thread B tries to acquire lock L1</li>
+</ul>
+<p>Solution?</p>
+
+</div>
+<div class="slide">
+<h1 id="deadlocks">Deadlocks</h1><p>A deadlock occurs when:</p>
+<ul class="simple"><li>thread A acquires lock L1</li>
+<li>thread B acquires lock L2</li>
+<li>thread A tries to acquire lock L2</li>
+<li>thread B tries to acquire lock L1</li>
+</ul>
+<p>Solution?</p>
+<ul class="simple"><li>enforce L1 is always acquired before L2</li>
+</ul>
+
+</div>
+<div class="slide">
+<h1 id="locking-levels-fight-deadlocks">Locking levels fight deadlocks</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td><pre id="listing_13" class="listing"><span class="Keyword">var</span> <span class="Identifier">a</span><span class="Punctuation">,</span> <span class="Identifier">b</span><span class="Punctuation">:</span> <span class="Identifier">Lock</span><span class="Punctuation">[</span><span class="DecNumber">2</span><span class="Punctuation">]</span>
+<span class="Keyword">var</span> <span class="Identifier">x</span><span class="Punctuation">:</span> <span class="Identifier">Lock</span><span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">]</span>
+<span class="Comment"># invalid locking order: Lock[1] cannot be acquired before Lock[2]:</span>
+<span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">x</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Operator">...</span>
+<span class="Comment"># valid locking order: Lock[2] acquired before Lock[1]:</span>
+<span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">x</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Operator">...</span>
+
+<span class="Comment"># invalid locking order: Lock[2] acquired before Lock[2]:</span>
+<span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">b</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Operator">...</span>
+
+<span class="Comment"># valid locking order, locks of the same level acquired at the same time:</span>
+<span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">,</span> <span class="Identifier">b</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+  <span class="Operator">...</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_13')">Select</button>
+</div>
+<div class="slide">
+<h1 id="locking-levels-fight-deadlocks">Locking levels fight deadlocks</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td><pre id="listing_14" class="listing"><span class="Keyword">template</span> <span class="Identifier">multilock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">,</span> <span class="Identifier">b</span><span class="Punctuation">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Lock</span><span class="Punctuation">;</span> <span class="Identifier">body</span><span class="Punctuation">:</span> <span class="Identifier">stmt</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Keyword">if</span> <span class="Keyword">cast</span><span class="Punctuation">[</span><span class="Identifier">ByteAddress</span><span class="Punctuation">]</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span> <span class="Operator">&lt;</span> <span class="Keyword">cast</span><span class="Punctuation">[</span><span class="Identifier">ByteAddress</span><span class="Punctuation">]</span><span class="Punctuation">(</span><span class="Identifier">b</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
+    <span class="Identifier">pthread_mutex_lock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span>
+    <span class="Identifier">pthread_mutex_lock</span><span class="Punctuation">(</span><span class="Identifier">b</span><span class="Punctuation">)</span>
+  <span class="Keyword">else</span><span class="Punctuation">:</span>
+    <span class="Identifier">pthread_mutex_lock</span><span class="Punctuation">(</span><span class="Identifier">b</span><span class="Punctuation">)</span>
+    <span class="Identifier">pthread_mutex_lock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span>
+  <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">,</span> <span class="Identifier">b</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+    <span class="Keyword">try</span><span class="Punctuation">:</span>
+      <span class="Identifier">body</span>
+    <span class="Keyword">finally</span><span class="Punctuation">:</span>
+      <span class="Identifier">pthread_mutex_unlock</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">)</span>
+      <span class="Identifier">pthread_mutex_unlock</span><span class="Punctuation">(</span><span class="Identifier">b</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_14')">Select</button>
+</div>
+<div class="slide">
+<h1 id="locking-levels-fight-deadlocks">Locking levels fight deadlocks</h1><table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+</pre></td><td><pre id="listing_15" class="listing"><span class="Keyword">proc</span> <span class="Identifier">p</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="FloatNumber">3.</span><span class="Punctuation">}</span> <span class="Operator">=</span> <span class="Keyword">discard</span>
+
+<span class="Keyword">var</span> <span class="Identifier">a</span><span class="Punctuation">:</span> <span class="Identifier">Lock</span><span class="Punctuation">[</span><span class="DecNumber">4</span><span class="Punctuation">]</span>
+<span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">locks</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Identifier">a</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Punctuation">}</span><span class="Punctuation">:</span>
+  <span class="Comment"># p's locklevel (3) is strictly less than a's (4) so the call is allowed:</span>
+  <span class="Identifier">p</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_15')">Select</button>
+
+
+</body>
+</div>
+</html>
