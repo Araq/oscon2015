@@ -3,6 +3,40 @@
 ============================================================
 
 
+.. raw:: html
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <center><big><big>Slides</big></big></center>
+  <br />
+  <center><big><big><big><big>git clone https://github.com/Araq/oscon2015</big></big></big></big></center>
+  <br />
+  <br />
+  <br />
+  <center><big><big>Download</big></big></center>
+  <br />
+  <center><big><big><big><big><a href="http://nim-lang.org/download.html">http://nim-lang.org/download.html</a></big></big></big></big></center>
+
+
+
+Installation
+============
+
+::
+  git clone -b devel git://github.com/nim-lang/Nim.git
+  cd Nim
+  git clone -b devel --depth 1 git://github.com/nim-lang/csources
+  cd csources && sh build.sh
+  cd ..
+  bin/nim c koch
+  ./koch boot -d:release
+
+
 What is Nim?
 ============
 
@@ -59,6 +93,7 @@ Uses of Nim
 - scripting
 
 
+
 URLs
 ====
 
@@ -69,21 +104,6 @@ Forum              http://forum.nim-lang.org
 Github             https://github.com/Araq/Nim
 IRC                irc.freenode.net/nim
 ============       ================================================
-
-
-
-
-Installation
-============
-
-::
-  git clone -b devel git://github.com/nim-lang/Nim.git
-  cd Nim
-  git clone -b devel --depth 1 git://github.com/nim-lang/csources
-  cd csources && sh build.sh
-  cd ..
-  bin/nim c koch
-  ./koch boot -d:release
 
 
 
