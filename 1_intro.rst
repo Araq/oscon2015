@@ -93,6 +93,13 @@ Uses of Nim
 - scripting
 
 
+Nim at 3dicc
+============
+
+.. raw:: html
+  <img src="busyteam2.png" />
+
+
 
 URLs
 ====
