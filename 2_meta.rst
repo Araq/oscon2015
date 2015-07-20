@@ -180,7 +180,7 @@ Code coverage
   # This is the code our macro will produce!
 
   var
-    track = [("line 9", false), ("line 13", false), ...]
+    track = [("line 11", false), ("line 15", false), ...]
 
   proc toTest(x, y: int) =
     try:

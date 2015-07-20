@@ -155,7 +155,7 @@ More Code!
   echo decimalToRoman(1009) # MIX
 
 
-- ``{"M": 1000, "CM": 900}`` sugar for ``[("M": 1000), ("CM": 900)]``
+- ``{"M": 1000, "CM": 900}`` sugar for ``[("M", 1000), ("CM", 900)]``
 - ``result`` implicitly available
 
 
@@ -236,6 +236,8 @@ Operators
 * No explicit distinction between binary and unary operators:
 
 .. code-block:: Nim
+   :number-lines:
+
   proc `++`(x: var int; y: int = 1; z: int = 0) =
     x = x + y + z
 
