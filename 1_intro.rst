@@ -412,7 +412,6 @@ Builtin types
 
 ``object``
 
-* nominal typing
 * value based datatypes
 
 .. code-block:: nim
