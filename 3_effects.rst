@@ -222,7 +222,7 @@ GC safety
 
   import threadpool, tables, strutils
 
-  {.pragma isolated, threadvar.}
+  {.pragma: isolated, threadvar.}
 
   var tab {.isolated.}: CountTable[string]
 
