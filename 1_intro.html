@@ -366,7 +366,7 @@ bin/nim c koch
       <span class="Identifier">decVal</span> <span class="Operator">-=</span> <span class="Identifier">val</span>
       <span class="Identifier">result</span><span class="Operator">.</span><span class="Identifier">add</span><span class="Punctuation">(</span><span class="Identifier">key</span><span class="Punctuation">)</span>
 
-<span class="Identifier">echo</span> <span class="Identifier">decimalToRoman</span><span class="Punctuation">(</span><span class="DecNumber">1009</span><span class="Punctuation">)</span> <span class="Comment"># MIX</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_3')">Select</button><ul class="simple"><li><tt class="docutils literal"><span class="pre">{&quot;M&quot;: 1000, &quot;CM&quot;: 900}</span></tt> sugar for <tt class="docutils literal"><span class="pre">[(&quot;M&quot;: 1000), (&quot;CM&quot;: 900)]</span></tt></li>
+<span class="Identifier">echo</span> <span class="Identifier">decimalToRoman</span><span class="Punctuation">(</span><span class="DecNumber">1009</span><span class="Punctuation">)</span> <span class="Comment"># MIX</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_3')">Select</button><ul class="simple"><li><tt class="docutils literal"><span class="pre">{&quot;M&quot;: 1000, &quot;CM&quot;: 900}</span></tt> sugar for <tt class="docutils literal"><span class="pre">[(&quot;M&quot;, 1000), (&quot;CM&quot;, 900)]</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">result</span></tt> implicitly available</li>
 </ul>
 
@@ -422,14 +422,22 @@ x.`@`</pre>
 <h1 id="operators">Operators</h1><ul class="simple"><li>Of course, most of the time binary operators are simply invoked as <tt class="docutils literal"><span class="pre">x @ y</span></tt> and unary operators as <tt class="docutils literal"><span class="pre">@x</span></tt>.</li>
 <li>No explicit distinction between binary and unary operators:</li>
 </ul>
-<pre id="listing_4" class="listing"><span class="Keyword">proc</span> <span class="Punctuation">`</span><span class="Operator">++</span><span class="Punctuation">`</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">:</span> <span class="Keyword">var</span> <span class="Identifier">int</span><span class="Punctuation">;</span> <span class="Identifier">y</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Operator">=</span> <span class="DecNumber">1</span><span class="Punctuation">;</span> <span class="Identifier">z</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Operator">=</span> <span class="DecNumber">0</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+<table class="line-nums-table"><tbody><tr><td class="blob-line-nums"><pre class="line-nums">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td><pre id="listing_4" class="listing"><span class="Keyword">proc</span> <span class="Punctuation">`</span><span class="Operator">++</span><span class="Punctuation">`</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">:</span> <span class="Keyword">var</span> <span class="Identifier">int</span><span class="Punctuation">;</span> <span class="Identifier">y</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Operator">=</span> <span class="DecNumber">1</span><span class="Punctuation">;</span> <span class="Identifier">z</span><span class="Punctuation">:</span> <span class="Identifier">int</span> <span class="Operator">=</span> <span class="DecNumber">0</span><span class="Punctuation">)</span> <span class="Operator">=</span>
   <span class="Identifier">x</span> <span class="Operator">=</span> <span class="Identifier">x</span> <span class="Operator">+</span> <span class="Identifier">y</span> <span class="Operator">+</span> <span class="Identifier">z</span>
 
 <span class="Keyword">var</span> <span class="Identifier">g</span> <span class="Operator">=</span> <span class="DecNumber">70</span>
 <span class="Operator">++</span><span class="Identifier">g</span>
 <span class="Identifier">g</span> <span class="Operator">++</span> <span class="DecNumber">7</span>
 <span class="Identifier">g</span><span class="Operator">.</span><span class="Punctuation">`</span><span class="Operator">++</span><span class="Punctuation">`</span><span class="Punctuation">(</span><span class="DecNumber">10</span><span class="Punctuation">,</span> <span class="DecNumber">20</span><span class="Punctuation">)</span>
-<span class="Identifier">echo</span> <span class="Identifier">g</span>  <span class="Comment"># writes 108</span></pre><ul class="simple"><li>parameters are readonly unless declared as <tt class="docutils literal"><span class="pre">var</span></tt></li>
+<span class="Identifier">echo</span> <span class="Identifier">g</span>  <span class="Comment"># writes 108</span></pre></td></tr></tbody></table><button onclick="copyToClipboard('listing_4')">Select</button><ul class="simple"><li>parameters are readonly unless declared as <tt class="docutils literal"><span class="pre">var</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">var</span></tt> means &quot;pass by reference&quot; (implemented with a hidden pointer)</li>
 </ul>
 
