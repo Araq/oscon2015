@@ -297,7 +297,7 @@ Flow typing
 
   var x: ref int
   if x != nil:
-    p(x)
+    f(x)
 
 
 Effect system
@@ -518,6 +518,16 @@ Macros
       result.add newCall(bindSym"write", f, a)
     result.add newCall(bindSym"writeNewline", f)
 
+Macros
+======
+
+.. code-block::nim
+   :number-lines:
+
+  proc f(a, b, c: int): int = a+b+c
+
+  echo curry(f, 10)(3, 4)
+
 
 Macros
 ======
@@ -627,8 +637,8 @@ Parallelism
 
 
 
-Please contribute
-=================
+Thank you
+=========
 
 ============       ================================================
 Website            http://nim-lang.org
